@@ -5,9 +5,7 @@ import Server as se
 import Client as cl
 
 
-
 def open_sender():
-
 
     send_layout = [[sg.Text("IP ADDRESS of the target")], [sg.Input()], [sg.Text("DESTINATION PORT")],
                    [sg.Input(default_text="5001")], [sg.Input(key='path'), sg.FileBrowse(key='filebrowser')],
@@ -23,6 +21,7 @@ def open_sender():
         if send_event == 'send':
             print(send_values)
             cl.run_client(int(send_values[1]), str(send_values[0]), send_values['path'], progressbar)
+
 
 def open_receiver():
     receiver_layout = [
@@ -51,8 +50,6 @@ while True:
         threading.Thread(target=open_sender()).start()
     if event == "Receive":
         threading.Thread(target=open_receiver()).start()
-
-
     if event == sg.WIN_CLOSED:
         break
 
